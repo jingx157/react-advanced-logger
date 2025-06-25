@@ -1,12 +1,22 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "target": "ES2020",
-    "module": "CommonJS",
+    "target": "ES6",
+    "module": "ESNext",
+    "lib": [
+      "DOM",
+      "ES6"
+    ],
+    "declaration": true,
+    "declarationDir": "dist",
     "outDir": "dist",
-    "skipLibCheck": true
-  }
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "src"
+  ]
 }

@@ -1,9 +1,9 @@
 {
-  "name": "axios-enhanced-client",
-  "version": "1.0.1",
-  "description": "Feature-rich HTTP client built on Axios with token refresh, retries, and more",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "react-advanced-logger",
+  "version": "1.0.4",
+  "description": "A powerful and extensible logger for React + Redux with advanced features",
+  "main": "dist/logger.js",
+  "types": "dist/logger.d.ts",
   "files": [
     "dist"
   ],
@@ -11,27 +11,25 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/broschign162/axios-enhanced-client.git"
-  },
   "keywords": [
-    "axios",
-    "http-client",
-    "http",
-    "typescript",
-    "retry",
-    "token-refresh",
-    "debounce",
-    "throttle"
+    "react",
+    "logger",
+    "redux",
+    "redux-toolkit",
+    "logging",
+    "typescript"
   ],
   "author": "Jingx",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^1.4.0",
-    "axios-retry": "^3.3.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jingx157/react-advanced-logger.git"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "@types/node": "^24.0.4",
+    "typescript": "^5.4.0"
+  },
+  "peerDependencies": {
+    "@reduxjs/toolkit": "^1.9.0 || ^2.0.0"
   }
 }
