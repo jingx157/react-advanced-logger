@@ -1,0 +1,37 @@
+{
+  "name": "axios-enhanced-client",
+  "version": "1.0.0",
+  "description": "Feature-rich HTTP client built on Axios with token refresh, retries, and more",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/broschign162/axios-enhanced-client.git"
+  },
+  "keywords": [
+    "axios",
+    "http-client",
+    "http",
+    "typescript",
+    "retry",
+    "token-refresh",
+    "debounce",
+    "throttle"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "axios-retry": "^3.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
