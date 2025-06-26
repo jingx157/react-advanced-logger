@@ -6,7 +6,7 @@ export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'timer';
 
 interface LoggerOptions {
     level: LogLevel;
-    message?: string | null;
+    message?: any;
     meta?: any;
     tag?: string;
     captureStack?: boolean;
@@ -36,10 +36,10 @@ interface LogEntry {
 const LEVELS: LogLevel[] = ['debug', 'info', 'warn', 'error', 'timer'];
 const STYLES = {
     debug: 'color: gray',
-    info: 'color: blue',
+    info: 'color: green',
     warn: 'color: orange',
     error: 'color: red',
-    timer: 'color: green'
+    timer: 'color: blue'
 };
 
 let config: Config = {
@@ -66,12 +66,18 @@ function shouldLog(level: LogLevel, tag?: string): boolean {
 function log({level, message, meta, tag, captureStack}: LoggerOptions) {
     if (!shouldLog(level, tag)) return;
 
-    const text = message ?? '(no message)';
+    const isString = typeof message === 'string';
+    const text = isString
+        ? message
+        : message === null || message === undefined
+            ? '(no message)'
+            : '(object message)';
+    const fullMeta = isString ? meta : {...(meta || {}), message};
 
     const entry: LogEntry = {
         level,
         message: text,
-        meta,
+        meta: fullMeta,
         tag,
         timestamp: new Date().toISOString(),
         stack: captureStack ? new Error().stack : undefined
@@ -83,7 +89,7 @@ function log({level, message, meta, tag, captureStack}: LoggerOptions) {
     const prefix = config.prefix ? `${config.prefix} ` : '';
     const tagText = tag ? `[${tag}]` : '';
     const output = [`%c${prefix}[${level.toUpperCase()}] ${tagText}`, STYLES[level]];
-    if (meta) output.push(text, meta); else output.push(text);
+    if (fullMeta) output.push(text, fullMeta); else output.push(text);
     console[level === 'timer' ? 'info' : level](...output);
 
     if (config.batch && config.sendToServer) {
@@ -134,22 +140,22 @@ const logger = {
             }
         };
     },
-    debug: (msg?: string | null, meta?: any, opts?: Partial<LoggerOptions>) => log({
+    debug: (msg?: any, meta?: any, opts?: Partial<LoggerOptions>) => log({
         level: 'debug',
         message: msg,
         meta, ...opts
     }),
-    info: (msg?: string | null, meta?: any, opts?: Partial<LoggerOptions>) => log({
+    info: (msg?: any, meta?: any, opts?: Partial<LoggerOptions>) => log({
         level: 'info',
         message: msg,
         meta, ...opts
     }),
-    warn: (msg?: string | null, meta?: any, opts?: Partial<LoggerOptions>) => log({
+    warn: (msg?: any, meta?: any, opts?: Partial<LoggerOptions>) => log({
         level: 'warn',
         message: msg,
         meta, ...opts
     }),
-    error: (msg?: string | null, meta?: any, opts?: Partial<LoggerOptions>) => log({
+    error: (msg?: any, meta?: any, opts?: Partial<LoggerOptions>) => log({
         level: 'error',
         message: msg,
         meta, ...opts

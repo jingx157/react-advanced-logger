@@ -1,6 +1,6 @@
 {
   "name": "react-advanced-logger",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A powerful and extensible logger for React + Redux with advanced features",
   "main": "dist/logger.js",
   "types": "dist/logger.d.ts",
